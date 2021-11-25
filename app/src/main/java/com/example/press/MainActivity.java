@@ -3,8 +3,12 @@ package com.example.press;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,15 +52,65 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select);
     }
+
     public void on_button_click(View view){
+        LinearLayout lists = (LinearLayout) findViewById(R.id.exercise_list);
         switch (view.getId()){
-            case R.id.record1:
+            case R.id.breast:
+                lists.removeAllViews();
+                for (String exercise : breast_exercises){
+                    TextView tx = new TextView(this);
+                    tx.setText(exercise);
+                    tx.setHeight(80);
+                    tx.setGravity(Gravity.CENTER);
+                    tx.setTextSize(20);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.bottomMargin = 100;
+                    tx.setLayoutParams(params);
+                    lists.addView(tx);
+                }
                 break;
-            case R.id.record2:
+            case R.id.back:
+                lists.removeAllViews();
+                for (String exercise : back_exercises){
+                    TextView tx = new TextView(this);
+                    tx.setText(exercise);
+                    tx.setHeight(80);
+                    tx.setGravity(Gravity.CENTER);
+                    tx.setTextSize(20);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.bottomMargin = 100;
+                    tx.setLayoutParams(params);
+                    lists.addView(tx);
+                }
                 break;
-            case R.id.record3:
+            case R.id.shoulder:
+                lists.removeAllViews();
+                for (String exercise : shoulder_exercises){
+                    TextView tx = new TextView(this);
+                    tx.setText(exercise);
+                    tx.setHeight(80);
+                    tx.setGravity(Gravity.CENTER);
+                    tx.setTextSize(20);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.bottomMargin = 100;
+                    tx.setLayoutParams(params);
+                    lists.addView(tx);
+                }
                 break;
-            case R.id.record4:
+            case R.id.leg:
+                lists.removeAllViews();
+                for (String exercise : leg_exercises){
+                    TextView tx = new TextView(this);
+                    tx.setText(exercise);
+                    tx.setHeight(80);
+                    tx.setGravity(Gravity.CENTER);
+                    tx.setTextSize(20);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.bottomMargin = 100;
+                    tx.setLayoutParams(params);
+                    lists.addView(tx);
+                }
                 break;
         }
     }
