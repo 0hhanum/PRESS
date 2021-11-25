@@ -19,7 +19,7 @@
             android:gravity="center"
             android:background="#664FC1"
             android:textColor="#FFFFFF"
-            android:text="운동 기록" />
+            android:text="운동 정보" />
         <TextView
             android:id="@+id/subtitle"
             android:layout_width="match_parent"
