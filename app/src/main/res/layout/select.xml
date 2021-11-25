@@ -30,6 +30,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="7dp"
                 android:id="@+id/breast"
+                android:onClick="on_button_click"
                 android:text="가슴" />
             <Button
                 android:layout_width="wrap_content"
