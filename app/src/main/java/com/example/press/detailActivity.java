@@ -50,7 +50,7 @@ public class detailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.select);
+        setContentView(R.layout.detail);
     }
 
     public void on_button_click(View view){
