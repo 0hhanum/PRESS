@@ -88,6 +88,15 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     params.bottomMargin = 100;
                     tx.setLayoutParams(params);
+                    tx.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // Intent 이용해 선택한 운동을 보낸다
+                            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                            intent.putExtra("exercise", exercise);
+                            startActivity(intent);
+                        }
+                    });
                     lists.addView(tx);
                 }
                 break;
@@ -102,6 +111,15 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     params.bottomMargin = 100;
                     tx.setLayoutParams(params);
+                    tx.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // Intent 이용해 선택한 운동을 보낸다
+                            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                            intent.putExtra("exercise", exercise);
+                            startActivity(intent);
+                        }
+                    });
                     lists.addView(tx);
                 }
                 break;
@@ -116,10 +134,18 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     params.bottomMargin = 100;
                     tx.setLayoutParams(params);
+                    tx.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // Intent 이용해 선택한 운동을 보낸다
+                            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                            intent.putExtra("exercise", exercise);
+                            startActivity(intent);
+                        }
+                    });
                     lists.addView(tx);
                 }
                 break;
         }
     }
-
 }
