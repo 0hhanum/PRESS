@@ -19,5 +19,4 @@ public class RecordActivity extends AppCompatActivity {
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
     }
-
 }
