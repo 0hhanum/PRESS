@@ -18,10 +18,10 @@ public class DetailActivity extends AppCompatActivity {
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
     }
-
     public void go_to_exercise(View view){
         Intent intent = new Intent(DetailActivity.this, RecordActivity.class);
         intent.putExtra("exercise", getIntent().getExtras().getString("exercise"));
         startActivity(intent);
-        }
+    }
+
 }
