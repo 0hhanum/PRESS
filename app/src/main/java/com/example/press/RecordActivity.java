@@ -11,7 +11,7 @@ public class RecordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail);
+        setContentView(R.layout.record);
         // Intent 정보 수신
         Intent intent = getIntent();
         String exercise = intent.getExtras().getString("exercise");

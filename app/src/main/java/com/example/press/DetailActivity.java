@@ -15,14 +15,13 @@ public class DetailActivity extends AppCompatActivity {
         // Intent 정보 수신
         Intent intent = getIntent();
         String exercise = intent.getExtras().getString("exercise");
-
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
     }
 
     public void go_to_exercise(View view){
-        Intent intent = new Intent(DetailActivity.this, DetailActivity.class);
-        intent.putExtra("exercise", exercise);
+        Intent intent = new Intent(DetailActivity.this, RecordActivity.class);
+        intent.putExtra("exercise", getIntent().getExtras().getString("exercise"));
         startActivity(intent);
         }
 }
