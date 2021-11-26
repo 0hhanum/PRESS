@@ -71,7 +71,7 @@ public class selectActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
 //                            TextView tx = findViewById(view.getId());
-                            tx.setText("hello");
+
                         }
                     });
                     lists.addView(tx);
