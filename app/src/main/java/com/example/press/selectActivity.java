@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class selectActivity extends AppCompatActivity {
     String[] breast_exercises = {
             "벤치 프레스",
             "덤벨 프레스",
@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     params.bottomMargin = 100;
                     tx.setLayoutParams(params);
+                    tx.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+//                            TextView tx = findViewById(view.getId());
+                            tx.setText("hello");
+                        }
+                    });
                     lists.addView(tx);
                 }
                 break;
