@@ -24,10 +24,9 @@ public class RecordActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Intent 이용해 선택한 운동을 보낸다
-                Intent intent = new Intent(RecordActivity.this, DetailActivity.class);
+                Intent intent = new Intent(RecordActivity.this, AddActivity.class);
                 intent.putExtra("exercise", exercise);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }

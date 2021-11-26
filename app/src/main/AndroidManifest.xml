@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".DetailActivity"/>
         <activity android:name=".RecordActivity"/>
-        <activity android:name=".AddActivity"/>
+        <activity android:name=".AddActivity" android:theme="@android:style/Theme.Dialog"/>
     </application>
 
 </manifest>
