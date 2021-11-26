@@ -1,6 +1,7 @@
 package com.example.press;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 for (String exercise : breast_exercises){
                     TextView tx = new TextView(this);
                     tx.setText(exercise);
+                    tx.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
                     tx.setHeight(80);
                     tx.setGravity(Gravity.CENTER);
                     tx.setTextSize(20);
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 for (String exercise : back_exercises){
                     TextView tx = new TextView(this);
                     tx.setText(exercise);
+                    tx.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
                     tx.setHeight(80);
                     tx.setGravity(Gravity.CENTER);
                     tx.setTextSize(20);
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 for (String exercise : shoulder_exercises){
                     TextView tx = new TextView(this);
                     tx.setText(exercise);
+                    tx.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
                     tx.setHeight(80);
                     tx.setGravity(Gravity.CENTER);
                     tx.setTextSize(20);
@@ -130,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 for (String exercise : leg_exercises){
                     TextView tx = new TextView(this);
                     tx.setText(exercise);
+                    tx.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
                     tx.setHeight(80);
                     tx.setGravity(Gravity.CENTER);
                     tx.setTextSize(20);
