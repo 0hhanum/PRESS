@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PRESS">
         <activity
-            android:name=".selectActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".detailActivity"/>
+        <activity android:name=".DetailActivity"/>
     </application>
 
 </manifest>

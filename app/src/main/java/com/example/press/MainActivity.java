@@ -6,13 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class selectActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     String[] breast_exercises = {
             "벤치 프레스",
             "덤벨 프레스",
@@ -71,7 +68,10 @@ public class selectActivity extends AppCompatActivity {
                     tx.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(selectActivity.this, detailActivity.class));
+                            // Intent 이용해 선택한 운동을 보낸다
+                            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                            intent.putExtra("exercise", exercise);
+                            startActivity(intent);
                         }
                     });
                     lists.addView(tx);
