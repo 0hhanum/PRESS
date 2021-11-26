@@ -2,6 +2,7 @@ package com.example.press;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,8 +27,21 @@ public class RecordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(RecordActivity.this, AddActivity.class);
                 // intent 로 dialog popup 띄우기
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
+    }
+    @SuppressLint("MissingSuperCall")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==1){
+            if(resultCode==RESULT_OK){
+                String kg = data.getStringExtra("kg");
+                String reps = data.getStringExtra("reps");
+                TextView tx = (TextView) findViewById(R.id.record1);
+                tx.setText(kg + " kg  " + reps + " 회 ");
+                tx.setTextSize(20);
+            }
+        }
     }
 }

@@ -15,8 +15,8 @@ public class AddActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.add);
 
-        EditText kg = (EditText) findViewById(R.id.kg);
-        EditText reps = (EditText) findViewById(R.id.reps);
+        EditText kgEdit = (EditText) findViewById(R.id.kg);
+        EditText repsEdit = (EditText) findViewById(R.id.reps);
         Button apply = (Button) findViewById(R.id.addApply);
         Button cancel = (Button) findViewById(R.id.addCancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -29,8 +29,11 @@ public class AddActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("kg", kg.getText());
-                intent.putExtra("reps", reps.getText());
+                String kg = kgEdit.getText().toString();
+                String reps = repsEdit.getText().toString();
+                intent.putExtra("kg", kg);
+                intent.putExtra("reps", reps);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });
