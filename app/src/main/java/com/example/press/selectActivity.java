@@ -70,7 +70,6 @@ public class selectActivity extends AppCompatActivity {
                     tx.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                            TextView tx = findViewById(view.getId());
 
                         }
                     });
