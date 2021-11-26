@@ -25,8 +25,8 @@ public class RecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecordActivity.this, AddActivity.class);
-                intent.putExtra("exercise", exercise);
-                startActivityForResult(intent, 1);
+                // intent 로 dialog popup 띄우기
+                startActivity(intent);
             }
         });
     }

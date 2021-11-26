@@ -157,13 +157,15 @@
 
         <Button
             android:id="@+id/addSetButton"
+            android:onClick="onAddClick"
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:background="@drawable/radius"
             android:backgroundTint="@color/purple_200"
             android:text="세트 추가하기"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            tools:ignore="OnClick" />
     </LinearLayout>
 
 </LinearLayout>
