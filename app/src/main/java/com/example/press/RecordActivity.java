@@ -7,7 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextClock;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class RecordActivity extends AppCompatActivity {
     @Override
@@ -36,11 +42,24 @@ public class RecordActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==1){
             if(resultCode==RESULT_OK){
+                ScrollView setList = (ScrollView) findViewById(R.id.sets);
                 String kg = data.getStringExtra("kg");
                 String reps = data.getStringExtra("reps");
                 TextView tx = (TextView) findViewById(R.id.record1);
-                tx.setText(kg + " kg  " + reps + " 회 ");
-                tx.setTextSize(20);
+                LinearLayout linearLayout = new LinearLayout(this);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                linearLayout.setLayoutParams(params);
+                TextView newSet = new TextView(this);
+                newSet.setText(kg + " kg  " + reps + " 회 ");
+                newSet.setTextSize(20);
+                params.bottomMargin = 15;
+                newSet.setLayoutParams(params);
+                newSet.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                linearLayout.addView(newSet);
+                CheckBox checkBox = new CheckBox(this);
+                linearLayout.addView(checkBox);
+                setList.addView(linearLayout);
             }
         }
     }
