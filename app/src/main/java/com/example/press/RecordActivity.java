@@ -42,7 +42,7 @@ public class RecordActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==1){
             if(resultCode==RESULT_OK){
-                ScrollView setList = (ScrollView) findViewById(R.id.sets);
+                LinearLayout setList = (LinearLayout) findViewById(R.id.setList);
                 String kg = data.getStringExtra("kg");
                 String reps = data.getStringExtra("reps");
                 TextView tx = (TextView) findViewById(R.id.record1);
