@@ -9,11 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextClock;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class RecordActivity extends AppCompatActivity {
     @Override
@@ -42,10 +38,13 @@ public class RecordActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==1){
             if(resultCode==RESULT_OK){
+                // popup 에서 받아온 data 를 처리
+                // 화면에 렌더링 & DB 에 저장
+
                 LinearLayout setList = (LinearLayout) findViewById(R.id.setList);
                 String kg = data.getStringExtra("kg");
                 String reps = data.getStringExtra("reps");
-                TextView tx = (TextView) findViewById(R.id.record1);
+
                 LinearLayout linearLayout = new LinearLayout(this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
