@@ -5,6 +5,7 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -115,7 +116,14 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return oneRm;
     }
-
+    public void deleteLastSet(String exercise, int index){
+        SQLiteDatabase db = getReadableDatabase();
+        try {
+            db.rawQuery("DELETE FROM Exercise WHERE Exercise='" + exercise + "' AND Id=" + index, null);
+        } catch (Exception e){
+            Log.d("Delete", "Nothing to delete.");
+        }
+    }
 }
 
 
