@@ -29,8 +29,8 @@ public class DetailActivity extends AppCompatActivity {
 
         List<Object> sets = dbHelper.getResultByDate(exercise);
         // 일자 별 총 볼륨을 받아옴.
-
         for (int i=0;i<sets.size();i += 2){
+            // 일자 별 총 볼륨 렌더링
             String date = String.valueOf(sets.get(i));
             String volume = String.valueOf(sets.get(i+1));
 
@@ -50,24 +50,31 @@ public class DetailActivity extends AppCompatActivity {
         Date getDate = new Date(now);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String today = sdf.format(getDate);
-
-        if (String.valueOf(sets.get(sets.size() - 2)).equals(today)) {
-            // 만약 오늘 운동 정보가 기록되어 있다면 그 전 정보를 보낸다.
-            try {
-                lastDayVolume = (int) sets.get(sets.size() - 3);
-                // 이전 운동 기록이 있으면 보내고 아니면 0 을 보냄.
-            } catch (Exception e) {
-                lastDayVolume = 0;
+        try {
+            if (String.valueOf(sets.get(sets.size() - 2)).equals(today)) {
+                // 만약 오늘 운동 정보가 기록되어 있다면 그 전 정보를 보낸다.
+                try {
+                    lastDayVolume = (int) sets.get(sets.size() - 3);
+                    // 이전 운동 기록이 있으면 보내고 아니면 0 을 보냄.
+                } catch (Exception e) {
+                    lastDayVolume = 0;
+                }
+            } else {
+                try {
+                    lastDayVolume = (int) sets.get(sets.size() - 1);
+                    // 오늘 운동 기록이 없으면 DB 상 마지막 데이터를 보냄.
+                    // 그것도 없으면 0 을 보냄.
+                } catch (Exception e) {
+                    lastDayVolume = 0;
+                }
             }
-        } else {
-            try {
-                lastDayVolume = (int) sets.get(sets.size() - 1);
-                // 오늘 운동 기록이 없으면 DB 상 마지막 데이터를 보냄.
-                // 그것도 없으면 0 을 보냄.
-            } catch (Exception e) {
-                lastDayVolume = 0;
-            }
+        } catch(ArrayIndexOutOfBoundsException e){
+            lastDayVolume = 0;
         }
+        // 1rm 렌더링
+        int best_record = dbHelper.getMaxOneRm(exercise);
+        TextView tv = (TextView) findViewById(R.id.best_record);
+        tv.setText("최고 1rm " + best_record + " kg");
     }
     public void go_to_exercise(View view){
         Intent intent = new Intent(DetailActivity.this, RecordActivity.class);

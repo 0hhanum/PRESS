@@ -1,6 +1,7 @@
 package com.example.press;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
@@ -102,6 +103,19 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return lastIndex;
     }
+    public int getMaxOneRm(String exercise){
+        SQLiteDatabase db = getReadableDatabase();
+        int oneRm;
+        Cursor cursor = db.rawQuery("SELECT max(Kg) FROM Exercise WHERE Exercise='" + exercise + "'", null);
+        cursor.moveToNext();
+        try {
+            oneRm = cursor.getInt(0);
+        } catch (CursorIndexOutOfBoundsException e){
+            oneRm = 0;
+        }
+        return oneRm;
+    }
+
 }
 
 

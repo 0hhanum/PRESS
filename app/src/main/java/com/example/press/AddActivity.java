@@ -30,8 +30,8 @@ public class AddActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                String kg = kgEdit.getText().toString();
-                String reps = repsEdit.getText().toString();
+                String kg = kgEdit.getText().toString().trim();
+                String reps = repsEdit.getText().toString().trim();
                 try{ // 숫자를 입력했는지 체크
                     Integer.parseInt(kg);
                     Integer.parseInt(reps);
