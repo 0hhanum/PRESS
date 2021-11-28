@@ -1,9 +1,11 @@
 package com.example.press;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +23,10 @@ import java.util.List;
 public class RecordActivity extends AppCompatActivity {
     String ex;
     DBHelper dbHelper = new DBHelper(RecordActivity.this, 1);
+    List<Integer> totalSets = new ArrayList<Integer>();
+    int total;
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +51,9 @@ public class RecordActivity extends AppCompatActivity {
         long now = System.currentTimeMillis();
         Date getDate = new Date(now);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(getDate);
+        String date = sdf.format(getDate); // 날짜 기록을 위한 오늘 날짜.
 
-        List<Integer> sets = dbHelper.getResult(date, exercise);
+        List<Integer> sets = dbHelper.getResult(date, exercise); // db 에 기록된 오늘의 해당 운동 세트 얻어오기
         LinearLayout setList = (LinearLayout) findViewById(R.id.setList);
         // 저장된 운동 렌더링
         Log.d("logging", exercise + " : " + sets.size());
@@ -68,7 +75,11 @@ public class RecordActivity extends AppCompatActivity {
             CheckBox checkBox = new CheckBox(this);
             linearLayout.addView(checkBox);
             setList.addView(linearLayout);
+            totalSets.add(Integer.parseInt(kg) * Integer.parseInt(reps));
         }
+        total = totalSets.stream().mapToInt(Integer::intValue).sum();
+        TextView volume_of_today = findViewById(R.id.volume_of_today);
+        volume_of_today.setText("오늘 총 볼륨 " + total + " kg");
     }
     @SuppressLint("MissingSuperCall")
     @Override
@@ -100,6 +111,10 @@ public class RecordActivity extends AppCompatActivity {
 
                 // DB 저장
                 dbHelper.insert(1, ex, Integer.parseInt(kg), Integer.parseInt(reps));
+                // 총 볼륨 Update
+                total += Integer.parseInt(kg) * Integer.parseInt(reps);
+                TextView volume_of_today = findViewById(R.id.volume_of_today);
+                volume_of_today.setText("오늘 총 볼륨 " + total + " kg");
             }
         }
     }
