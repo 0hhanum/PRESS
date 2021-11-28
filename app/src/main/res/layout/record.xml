@@ -48,7 +48,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/compare_volume"
+            android:id="@+id/last_volume"
             android:gravity="center"
             android:textColor="#0119FF"
             android:textSize="20sp"

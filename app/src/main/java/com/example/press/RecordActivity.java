@@ -34,6 +34,7 @@ public class RecordActivity extends AppCompatActivity {
         // Intent 정보 수신
         Intent intent = getIntent();
         String exercise = intent.getExtras().getString("exercise");
+        int lastVolume = intent.getExtras().getInt("lastVolume");
         ex = exercise;
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
@@ -80,6 +81,8 @@ public class RecordActivity extends AppCompatActivity {
         total = totalSets.stream().mapToInt(Integer::intValue).sum();
         TextView volume_of_today = findViewById(R.id.volume_of_today);
         volume_of_today.setText("오늘 총 볼륨 " + total + " kg");
+        TextView last_volume = findViewById(R.id.last_volume);
+        last_volume.setText(Integer.toString(lastVolume));
     }
     @SuppressLint("MissingSuperCall")
     @Override
