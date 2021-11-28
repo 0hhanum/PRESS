@@ -31,6 +31,12 @@ public class AddActivity extends Activity {
                 Intent intent = new Intent();
                 String kg = kgEdit.getText().toString();
                 String reps = repsEdit.getText().toString();
+                try{ // 숫자를 입력했는지 체크
+                    Integer.parseInt(kg);
+                    Integer.parseInt(reps);
+                } catch(NumberFormatException e) {
+                    finish();
+                }
                 intent.putExtra("kg", kg);
                 intent.putExtra("reps", reps);
                 setResult(RESULT_OK, intent);
