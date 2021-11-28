@@ -2,6 +2,7 @@ package com.example.press;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -24,7 +25,7 @@ public class RecordActivity extends AppCompatActivity {
     String ex;
     DBHelper dbHelper = new DBHelper(RecordActivity.this, 1);
     List<Integer> totalSets = new ArrayList<Integer>();
-    int total;
+    int total; int lastVolume;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -35,6 +36,7 @@ public class RecordActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String exercise = intent.getExtras().getString("exercise");
         int lastVolume = intent.getExtras().getInt("lastVolume");
+        this.lastVolume = lastVolume;
         ex = exercise;
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
@@ -81,8 +83,7 @@ public class RecordActivity extends AppCompatActivity {
         total = totalSets.stream().mapToInt(Integer::intValue).sum();
         TextView volume_of_today = findViewById(R.id.volume_of_today);
         volume_of_today.setText("오늘 총 볼륨 " + total + " kg");
-        TextView last_volume = findViewById(R.id.last_volume);
-        last_volume.setText(Integer.toString(lastVolume));
+        CompareWithLastVolume(lastVolume, total);
     }
     @SuppressLint("MissingSuperCall")
     @Override
@@ -118,7 +119,19 @@ public class RecordActivity extends AppCompatActivity {
                 total += Integer.parseInt(kg) * Integer.parseInt(reps);
                 TextView volume_of_today = findViewById(R.id.volume_of_today);
                 volume_of_today.setText("오늘 총 볼륨 " + total + " kg");
+                CompareWithLastVolume(lastVolume, total);
             }
+        }
+    }
+    public void CompareWithLastVolume(int lastVolume, int todayVolume){
+        TextView last_volume = findViewById(R.id.last_volume);
+        int diffrence = todayVolume - lastVolume;
+        if (diffrence >= 0){
+            last_volume.setText("지난 번보다 +" + diffrence + " kg");
+            last_volume.setTextColor(ContextCompat.getColor(this, R.color.blue));
+        } else {
+            last_volume.setText("지난 번보다 " + diffrence + " kg");
+            last_volume.setTextColor(ContextCompat.getColor(this, R.color.red));
         }
     }
 }
