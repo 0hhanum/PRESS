@@ -13,9 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 
 public class RecordActivity extends AppCompatActivity {
     String ex;
+    DBHelper dbHelper = new DBHelper(RecordActivity.this, 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +31,6 @@ public class RecordActivity extends AppCompatActivity {
         ex = exercise;
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
-        //
         Button button = (Button) findViewById(R.id.addSetButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,9 +38,34 @@ public class RecordActivity extends AppCompatActivity {
                 Intent intent = new Intent(RecordActivity.this, AddActivity.class);
                 // intent 로 dialog popup 띄우기
                 startActivityForResult(intent, 1);
+
             }
         });
 
+        long now = System.currentTimeMillis();
+        Date getDate = new Date(now);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(getDate);
+
+        List<Integer> sets = dbHelper.getResult(date, exercise);
+        LinearLayout setList = (LinearLayout) findViewById(R.id.setList);
+        String kg = Integer.toString(sets.get(0));
+        String reps = Integer.toString(sets.get(1));
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        linearLayout.setLayoutParams(params);
+        TextView newSet = new TextView(this);
+        newSet.setText(kg + " kg  " + reps + " 회 ");
+        newSet.setTextSize(20);
+        params.bottomMargin = 15;
+        newSet.setLayoutParams(params);
+        newSet.setGravity(View.TEXT_ALIGNMENT_CENTER);
+        linearLayout.addView(newSet);
+        CheckBox checkBox = new CheckBox(this);
+        linearLayout.addView(checkBox);
+        setList.addView(linearLayout);
     }
     @SuppressLint("MissingSuperCall")
     @Override
@@ -67,7 +96,6 @@ public class RecordActivity extends AppCompatActivity {
                 setList.addView(linearLayout);
 
                 // DB 저장
-                DBHelper dbHelper = new DBHelper(RecordActivity.this, 1);
                 dbHelper.insert(1, ex, Integer.parseInt(kg), Integer.parseInt(reps));
             }
         }

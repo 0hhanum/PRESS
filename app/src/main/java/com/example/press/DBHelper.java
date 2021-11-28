@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     static final String DATABASE_NAME = "DB";
@@ -48,25 +50,17 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Exercise Table 조회
-    public String getResult() {
+    public List<Integer> getResult(String date, String exercise) {
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
-        String result = "";
+        List<Integer> result = new ArrayList<Integer>();
 
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
-        Cursor cursor = db.rawQuery("SELECT * FROM Exercise", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Exercise WHERE Exercise='" + exercise + "' AND Date='" + date + "'", null);
+        cursor.moveToFirst();
         while (cursor.moveToNext()) {
-            result += " Id : "
-                    + cursor.getInt(0)
-                    + ", 날짜 : "
-                    + cursor.getString(1)
-                    + ", 운동 : "
-                    + cursor.getString(2)
-                    + ", 무게 : "
-                    + cursor.getInt(3)
-                    + ", 횟수 : "
-                    + cursor.getInt(4)
-                    + "\n";
+            result.add(3);
+            result.add(4);
         }
         return result;
     }
