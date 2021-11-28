@@ -4,14 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.database.sqlite.SQLiteDatabase;
+
 
 public class RecordActivity extends AppCompatActivity {
+    String ex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +23,7 @@ public class RecordActivity extends AppCompatActivity {
         // Intent 정보 수신
         Intent intent = getIntent();
         String exercise = intent.getExtras().getString("exercise");
-
+        ex = exercise;
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
         //
@@ -32,6 +36,7 @@ public class RecordActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
     }
     @SuppressLint("MissingSuperCall")
     @Override
@@ -41,6 +46,7 @@ public class RecordActivity extends AppCompatActivity {
                 // popup 에서 받아온 data 를 처리
                 // 화면에 렌더링 & DB 에 저장
 
+                // 렌더링
                 LinearLayout setList = (LinearLayout) findViewById(R.id.setList);
                 String kg = data.getStringExtra("kg");
                 String reps = data.getStringExtra("reps");
@@ -59,6 +65,10 @@ public class RecordActivity extends AppCompatActivity {
                 CheckBox checkBox = new CheckBox(this);
                 linearLayout.addView(checkBox);
                 setList.addView(linearLayout);
+
+                // DB 저장
+                DBHelper dbHelper = new DBHelper(RecordActivity.this, 1);
+                dbHelper.insert(1, ex, Integer.parseInt(kg), Integer.parseInt(reps));
             }
         }
     }

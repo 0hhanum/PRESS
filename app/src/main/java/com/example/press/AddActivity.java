@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
+
 public class AddActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

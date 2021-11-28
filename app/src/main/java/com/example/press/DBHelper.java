@@ -3,6 +3,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // Exercise Table 생성
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Exercise(Date TEXT, Exercise TEXT, Kg INTEGER, Reps INTEGER)");
+        db.execSQL("CREATE TABLE Exercise(Id INTEGER, Date TEXT, Exercise TEXT, Kg INTEGER, Reps INTEGER)");
     }
 
     // Exercise Table Upgrade
@@ -27,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Exercise Table 데이터 입력
-    public void insert(String exercise, int kg, int reps) {
+    public void insert(int id, String exercise, int kg, int reps) {
         SQLiteDatabase db = getWritableDatabase();
         String sql;
         long now = System.currentTimeMillis();
@@ -35,14 +36,14 @@ public class DBHelper extends SQLiteOpenHelper {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String getTime = sdf.format(date);
 
-        db.execSQL("INSERT INTO Exercise VALUES('" + getTime + "','" + exercise + "', " + kg + ", " + reps + ")");
+        db.execSQL("INSERT INTO Exercise VALUES(" + id + ", '" + getTime + "','" + exercise + "', " + kg + ", " + reps + ")");
         db.close();
     }
 
     // Exercise Table 데이터 삭제
-    public void Delete(String exercise) {
+    public void Delete(int id) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE Exercise WHERE Exercise = '" + exercise + "'");
+        db.execSQL("DELETE Exercise WHERE Id = " + id + "");
         db.close();
     }
 
@@ -55,14 +56,16 @@ public class DBHelper extends SQLiteOpenHelper {
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * FROM Exercise", null);
         while (cursor.moveToNext()) {
-            result += " 날짜 : "
-                    + cursor.getString(0)
-                    + ", 운동 : "
+            result += " Id : "
+                    + cursor.getInt(0)
+                    + ", 날짜 : "
                     + cursor.getString(1)
+                    + ", 운동 : "
+                    + cursor.getString(2)
                     + ", 무게 : "
-                    + cursor.getInt(2)
-                    + ", 횟수 : "
                     + cursor.getInt(3)
+                    + ", 횟수 : "
+                    + cursor.getInt(4)
                     + "\n";
         }
         return result;
