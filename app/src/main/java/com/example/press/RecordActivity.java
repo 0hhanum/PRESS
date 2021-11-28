@@ -110,7 +110,7 @@ public class RecordActivity extends AppCompatActivity {
                 setList.addView(linearLayout);
 
                 // DB 저장
-                dbHelper.insert(1, ex, Integer.parseInt(kg), Integer.parseInt(reps));
+                dbHelper.insert(dbHelper.getLastIndex(ex), ex, Integer.parseInt(kg), Integer.parseInt(reps));
                 // 총 볼륨 Update
                 total += Integer.parseInt(kg) * Integer.parseInt(reps);
                 TextView volume_of_today = findViewById(R.id.volume_of_today);

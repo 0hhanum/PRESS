@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,8 @@ public class DetailActivity extends AppCompatActivity {
         String exercise = intent.getExtras().getString("exercise");
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
+
+//        List<Object> sets =
     }
     public void go_to_exercise(View view){
         Intent intent = new Intent(DetailActivity.this, RecordActivity.class);

@@ -64,6 +64,30 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return result;
     }
+    public List<Object> getResult(String exercise) {
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getReadableDatabase();
+        List<Object> result = new ArrayList<Object>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Exercise WHERE Exercise='" + exercise + "'", null);
+//        cursor.moveToFirst();
+        while (cursor.moveToNext()) {
+            result.add(cursor.getInt(1)); // Date
+            result.add(cursor.getInt(3)); // kg
+            result.add(cursor.getInt(4)); // reps
+        }
+        return result;
+    }
+    public int getLastIndex(String exercise){
+        SQLiteDatabase db = getReadableDatabase();
+        int lastIndex = 1;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Exercise WHERE Exercise='" + exercise + "'", null);
+        while (cursor.moveToNext()) {
+            lastIndex++;
+        }
+        return lastIndex;
+    }
 }
 
 
