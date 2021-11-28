@@ -4,14 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.database.sqlite.SQLiteDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,23 +48,27 @@ public class RecordActivity extends AppCompatActivity {
 
         List<Integer> sets = dbHelper.getResult(date, exercise);
         LinearLayout setList = (LinearLayout) findViewById(R.id.setList);
-        String kg = Integer.toString(sets.get(0));
-        String reps = Integer.toString(sets.get(1));
+        // 저장된 운동 렌더링
+        Log.d("logging", exercise + " : " + sets.size());
+        for (int i=0;i<sets.size();i += 2){
+            String kg = Integer.toString(sets.get(i));
+            String reps = Integer.toString(sets.get(i+1));
 
-        LinearLayout linearLayout = new LinearLayout(this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout linearLayout = new LinearLayout(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        linearLayout.setLayoutParams(params);
-        TextView newSet = new TextView(this);
-        newSet.setText(kg + " kg  " + reps + " 회 ");
-        newSet.setTextSize(20);
-        params.bottomMargin = 15;
-        newSet.setLayoutParams(params);
-        newSet.setGravity(View.TEXT_ALIGNMENT_CENTER);
-        linearLayout.addView(newSet);
-        CheckBox checkBox = new CheckBox(this);
-        linearLayout.addView(checkBox);
-        setList.addView(linearLayout);
+            linearLayout.setLayoutParams(params);
+            TextView newSet = new TextView(this);
+            newSet.setText(kg + " kg  " + reps + " 회 ");
+            newSet.setTextSize(20);
+            params.bottomMargin = 15;
+            newSet.setLayoutParams(params);
+            newSet.setGravity(View.TEXT_ALIGNMENT_CENTER);
+            linearLayout.addView(newSet);
+            CheckBox checkBox = new CheckBox(this);
+            linearLayout.addView(checkBox);
+            setList.addView(linearLayout);
+        }
     }
     @SuppressLint("MissingSuperCall")
     @Override

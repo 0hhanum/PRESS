@@ -57,10 +57,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * FROM Exercise WHERE Exercise='" + exercise + "' AND Date='" + date + "'", null);
-        cursor.moveToFirst();
+//        cursor.moveToFirst();
         while (cursor.moveToNext()) {
-            result.add(3);
-            result.add(4);
+            result.add(cursor.getInt(3)); // kg
+            result.add(cursor.getInt(4)); // reps
         }
         return result;
     }
