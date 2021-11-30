@@ -51,12 +51,15 @@ public class RecordActivity extends AppCompatActivity {
             }
         });
         Button delButton = (Button) findViewById(R.id.deleteSetButton);
-        // 삭제 버튼으로 마지막 세트 삭제
+        // 삭제 버튼으로 마지막 세트 삭제 후 onCreate 재실행
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dbHelper.deleteLastSet(exercise, dbHelper.getLastIndex(exercise) - 1);
-
+                Intent intent = new Intent(RecordActivity.this, RecordActivity.class);
+                intent.putExtra("exercise", exercise);
+                finish();
+                startActivity(intent);
             }
         });
 
