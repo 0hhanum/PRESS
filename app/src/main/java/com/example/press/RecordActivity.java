@@ -40,8 +40,8 @@ public class RecordActivity extends AppCompatActivity {
         ex = exercise;
         TextView subtitle = (TextView) findViewById(R.id.subtitle);
         subtitle.setText(exercise);
-        Button button = (Button) findViewById(R.id.addSetButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button Addbutton = (Button) findViewById(R.id.addSetButton);
+        Addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecordActivity.this, AddActivity.class);
@@ -50,6 +50,16 @@ public class RecordActivity extends AppCompatActivity {
 
             }
         });
+        Button delButton = (Button) findViewById(R.id.deleteSetButton);
+        // 삭제 버튼으로 마지막 세트 삭제
+        delButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHelper.deleteLastSet(exercise, dbHelper.getLastIndex(exercise) - 1);
+
+            }
+        });
+
 
         long now = System.currentTimeMillis();
         Date getDate = new Date(now);

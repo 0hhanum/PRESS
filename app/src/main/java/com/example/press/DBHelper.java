@@ -117,10 +117,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return oneRm;
     }
     public void deleteLastSet(String exercise, int index){
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         try {
-            db.rawQuery("DELETE FROM Exercise WHERE Exercise='" + exercise + "' AND Id=" + index, null);
+//            db.execSQL("DELETE FROM Exercise WHERE Exercise='" + exercise + "' AND Id=" + index + ";", null);
+            db.delete("Exercise", "Exercise=? AND Id=?", new String[] {exercise, ""+index});
+            Log.d("Delete", "DELETE FROM Exercise WHERE Exercise='" + exercise + "' AND Id=" + index + ";");
         } catch (Exception e){
+            Log.d("Delete", "DELETE FROM Exercise WHERE (Exercise='" + exercise + "' AND Id=" + index + ");");
             Log.d("Delete", "Nothing to delete.");
         }
     }
