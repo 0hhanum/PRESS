@@ -20,6 +20,7 @@
         <activity android:name=".DetailActivity"/>
         <activity android:name=".RecordActivity"/>
         <activity android:name=".AddActivity" android:theme="@android:style/Theme.Dialog"/>
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
     </application>
 
 </manifest>
