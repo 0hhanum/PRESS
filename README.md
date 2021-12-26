@@ -1,4 +1,4 @@
-This app support you to record your weight training 🏋🏻‍♀️🏋🏻‍♀️💪
+This app assist you to record your weight training 🏋🏻‍♀️🏋🏻‍♀️💪
 
 ## Select screen
 
